@@ -1,5 +1,9 @@
 [
     {
+        "caption": "Collaboration: Toggle Local Server And Connect",
+        "command": "collab_activate_server"
+    },
+    {
         "caption": "Collaboration: Connect To Server",
         "command": "collab_connect_to_server"
     },
@@ -18,5 +22,9 @@
     {
         "caption": "Collaboration: Add Current Document",
         "command": "collab_add_current_document"
+    },
+    {
+        "caption": "Collaboration: Add Open Documents",
+        "command": "collab_add_open_documents"
     }
 ]

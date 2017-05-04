@@ -1,4 +1,4 @@
-import sublime, sublime_plugin, logging
+import sublime, sublime_plugin, logging, os.path
 
 # intitialize logging
 logger = logging.getLogger('Sublime Collaboration')
@@ -300,6 +300,28 @@ class SublimeCollaboration(object):
                     view.set_status('collab_server_status', status_value)
 
         sublime.set_timeout(_set_status, 0)
+
+class CollabActivateServer(sublime_plugin.ApplicationCommand, SublimeCollaboration):
+    def run(self):
+        if not server:
+            self.toggle_server()
+        self.connect("localhost")
+
+class CollabAddOpenDocumentsCommand(sublime_plugin.ApplicationCommand, SublimeCollaboration):
+    def run(self):
+        global client, editors
+
+        if not client: return
+        if sublime.active_window() == None: return
+
+        oldview = sublime.active_window().active_view()
+        views = sublime.active_window().views()
+        for view in views:
+            if view == None: return
+            sublime.active_window().focus_view(view)
+            if view.id() in (editor.view.id() for editor in editors.values()): return
+            self.add_current(view.name() if view.name() else (os.path.basename(view.file_name()) if view.file_name() else str(view.id())))
+        sublime.active_window().focus_view(oldview)
 
 class CollabConnectToServerCommand(sublime_plugin.ApplicationCommand, SublimeCollaboration):
     def run(self):
