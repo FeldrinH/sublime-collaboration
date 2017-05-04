@@ -22,7 +22,7 @@ def main(argv):
     if host == '':
         host = '0.0.0.0'
     if port == '':
-        port = 6633
+        port = 4321
     try:
         sys.stderr.write('Starting at ' + host +':' + str(port) + '...')
         server = CollabServer({'host':host, 'port': int(port)})

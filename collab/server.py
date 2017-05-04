@@ -11,7 +11,7 @@ class CollabServer(object):
         self.options = options
         self.model = CollabModel(options)
         self.host = self.options.get('host', '127.0.0.1')
-        self.port = self.options.get('port', 6633)
+        self.port = self.options.get('port', 4321)
         self.next_user_id = 0
 
         self.server = SocketServer(self.host, self.port)

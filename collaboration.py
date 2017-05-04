@@ -185,7 +185,7 @@ class SublimeCollaboration(object):
     def connect(self, host):
         global client
         if client: self.disconnect()
-        client = CollabClient(host, 6633)
+        client = CollabClient(host, 4321)
         client.on('error', lambda error: sublime.error_message("Client error: {0}".format(error)))
         client.on('closed', self.on_close)
         self.set_status()
@@ -269,7 +269,7 @@ class SublimeCollaboration(object):
             server = None
             logger.info("server closed")
         else:
-            server = CollabServer({'host':'127.0.0.1', 'port':6633})
+            server = CollabServer({'host':'127.0.0.1', 'port':4321})
             server.run_forever()
             logger.info("server started")
         self.set_status()
