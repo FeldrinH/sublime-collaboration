@@ -306,6 +306,9 @@ class CollabActivateServer(sublime_plugin.ApplicationCommand, SublimeCollaborati
         if not server:
             self.toggle_server()
         self.connect("localhost")
+    def is_enabled(self):
+        global client
+        return not bool(client)
 
 class CollabAddOpenDocumentsCommand(sublime_plugin.ApplicationCommand, SublimeCollaboration):
     def run(self):
@@ -346,6 +349,16 @@ class CollabOpenDocumentCommand(sublime_plugin.ApplicationCommand, SublimeCollab
     def is_enabled(self):
         global client
         return bool(client)
+
+class CollabOpenAvailableDocumentsCommand(sublime_plugin.ApplicationCommand, SublimeCollaboration):
+    def run(self):
+        global client
+        if not client: return
+        client.get_docs(self.open_get_docs)
+    def is_enabled(self):
+        return False
+        #global client
+        #return bool(client)
 
 class CollabAddCurrentDocumentCommand(sublime_plugin.ApplicationCommand, SublimeCollaboration):
     def run(self):

@@ -19,6 +19,10 @@
         "caption": "Collaboration: Open Document",
         "command": "collab_open_document"
     },
+        {
+        "caption": "Collaboration: Open Available Documents",
+        "command": "collab_open_available_documents"
+    },
     {
         "caption": "Collaboration: Add Current Document",
         "command": "collab_add_current_document"
